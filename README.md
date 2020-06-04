@@ -12,9 +12,16 @@ download nginx image built on alpine
 
 ## Run
 
-run nginx:alpine, name the process as test, mount local data dir to alpine's `/data` dir, mount local `nginx.conf` file to alpine's `/etc.../nginx.conf` , run the process in detached mode, expose alpine's port 80 to local port 8080
+`docker run --name test -v absolute-path-to-the-local-git-repository\data:/data:ro -v absolute-path-to-the-local-git-repository\nginx.conf:/etc/nginx/nginx.conf:ro -d -p 8080:80 nginx:alpine`
 
-`docker run --name test -v D:\workspace\nginx\data:/data:ro -v D:\workspace\nginx\nginx.conf:/etc/nginx/nginx.conf:ro -d -p 8080:80 nginx:alpine`
+- `docker run nginx:alpine` run nginx.
+- `--name test` name the created docker container as `test`.
+- `-v absolute-path-to-the-local-git-repository\data:/data:ro` override docker container's `/data` dir with local data dir.
+- `ro` means `read only`, which disables changing that dir from inside the container.
+- `-v absolute-path-to-the-local-git-repository\nginx.conf:/etc/nginx/nginx.conf:ro` override container's `/etc.../nginx.conf` with local conf file.
+- `ro` means `read only`, which disalbes changing the conf file from inside the container.
+- `-d` launch the container in detached mode.
+- `-p 8080:80` expose alpine's port 80 to local port 8080.
 
 ## Served Resources
 
