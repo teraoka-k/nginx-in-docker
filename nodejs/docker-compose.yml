@@ -1,0 +1,11 @@
+version: '3'
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: proxy-server
+    volumes:
+      - ${ABSOLUTE_PATH_TO_NGINX_CONF}:/etc/nginx/nginx.conf
+    ports:
+      - 8080:80
+    extra_hosts:
+      - localnode:${HOST_IPV4_ADDR}

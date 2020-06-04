@@ -6,6 +6,9 @@
   "scripts": {
     "build": "npx tsc -p ./src/",
     "dev": "npx nodemon -w ./src -e ts ./dist/index.js",
+    "ps": "docker-compose up -d",
+    "ps:kill": "docker-compose down",
+    "ps:reload": "docker kill -s HUP proxy-server",
     "start": "npm run build && node ./dist/index.js",
     "watch": "npx tsc -p ./src/ -w"
   },
